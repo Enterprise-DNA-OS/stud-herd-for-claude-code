@@ -1,11 +1,70 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "sale-catalogue",
+    "title": "Draft sale catalogue",
+    "for_each": "select id,sale,lot_no from lots order by sale,lot_no",
+    "file": "lot_no",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Lot",
+        "note": "Operator review required. No sale or slaughter clearance is certified.",
+        "sql": "select l.sale,l.lot_no,l.sale_date,a.tag,a.name,a.born,a.sex,a.breed,a.sire_tag,a.dam_tag,a.society_id,l.notes from lots l join animals a on a.id=l.animal_id where l.id=$1"
+      },
+      {
+        "title": "Recorded breeding values",
+        "note": "Only compare values from the same breed analysis and run. Values are stored, not calculated.",
+        "sql": "select e.trait,e.value,e.accuracy,e.run_date,e.analysis from ebvs e join lots l on l.animal_id=e.animal_id where l.id=$1 order by e.trait,e.run_date desc"
+      },
+      {
+        "title": "Preparation checks",
+        "sql": "select treatment_reviews,missing_receipts,missing_eid,missing_society_id from sale_readiness where id=$1"
+      }
+    ]
+  },
+  {
+    "name": "treatment-register",
+    "title": "Treatment record",
+    "for_each": "select id,tag from animals where status='active' order by tag",
+    "file": "tag",
+    "sections": [
+      {
+        "title": "Treatments",
+        "note": "Dates come from records entered by the operator. Verify label, veterinarian instructions and destination.",
+        "sql": "select treated,product,batch,product_expiry,dose,meat_clear,export_clear,instruction_ref,operator from treatments where animal_id=$1 order by treated"
+      }
+    ]
+  },
+  {
+    "name": "movement-checklist",
+    "title": "Movement preparation checklist",
+    "for_each": "select id,external_id from movements order by moved_at",
+    "file": "external_id",
+    "sections": [
+      {
+        "title": "Consignment record",
+        "note": "This is not an NVD, ASD, NLIS or NAIT submission. Use the official service and record its receipt.",
+        "sql": "select a.tag,a.eid,m.from_code,m.to_code,m.moved_at,m.direction,m.country,m.document_ref,m.recorded_at,m.receipt from movements m join animals a on a.id=m.animal_id where m.id=$1"
+      },
+      {
+        "title": "Treatment history",
+        "sql": "select t.treated,t.product,t.meat_clear,t.export_clear,t.instruction_ref from treatments t join movements m on m.animal_id=t.animal_id where m.id=$1 order by t.treated"
+      }
+    ]
+  },
+  {
+    "name": "calving-book",
+    "title": "Calving book",
+    "for_each": "select id,tag from animals where sex='F' order by tag",
+    "file": "tag",
+    "sections": [
+      {
+        "title": "Joinings",
+        "sql": "select s.tag as sire,j.joined,j.due,j.method,j.result from joinings j join animals s on s.id=j.sire_id where j.dam_id=$1 order by joined"
+      },
+      {
+        "title": "Calves",
+        "sql": "select a.tag,c.calved,c.birth_kg,c.assistance from calvings c join animals a on a.id=c.calf_id where c.dam_id=$1 order by calved"
+      }
     ]
   }
 ]

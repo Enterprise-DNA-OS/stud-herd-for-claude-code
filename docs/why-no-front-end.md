@@ -1,24 +1,11 @@
 # Why there is no front end
 
-HerdMASTER is a database with a subscription. The tables underneath it are ordinary: a few entities, a few relationships, a handful of workflows you repeat every week. What you pay for is the layer on top that lets people who do not write SQL get at those tables. Screens, filters, dashboards, forms.
+This build keeps stud records in a database and uses a coding agent to read and update them. The weekly work is already named: calving watch, weights, treatments, movement reconciliation and sale preparation. Each recipe runs the same CLI, so answers can be checked against records.
 
-That layer used to be the whole product, because talking to a database was hard. It is not hard any more. Open this folder in Claude Code, describe what you want, and it writes the query, runs it, and explains the answer. Ask a question the dashboard never had a chart for and you still get an answer.
+The database works locally with PGlite or on a shared PostgreSQL server. It is not tied to a particular coding agent. Views and documents are private HTML exports, with no server or editing screen.
 
-## What you gain
+A cattle yard needs different equipment from an office. This base has no phone interface, offline mobile synchronisation, electronic tag reader, scale connection or drag-and-drop pedigree tree. Local desktop work can operate without a database server, but that does not provide a disconnected multi-device system. Keep the existing yard and official registry processes until their replacements have been tested.
 
-- **Better answers.** A dashboard shows what the vendor decided to chart. Here you ask your own question, in your own words, and get it answered against your own data.
-- **No seats.** Everyone who needs to look can look. The bill does not grow with headcount.
-- **Your data in your Postgres.** Plain tables. Back them up, query them from anything, leave any time. There is no export step because there is nothing to leave.
-- **A process that matches you.** When your way of working changes, you add a command. You do not wait for a feature request to clear.
+HerdMASTER includes support, Central Sync and official integrations in its annual subscription. Its report designer also answers customised questions. The reason to build your own version is control over the record model and recurring work, not a claim that those vendor features have no value.
 
-## What you give up
-
-- **A visual board.** Stages are a table you ask about, not cards you drag.
-- **A phone app.** It runs where Claude Code runs.
-- **A vendor help desk.** This is open source. Enterprise DNA supports the installed version for businesses that want someone to call.
-
-## Who this fits
-
-Small teams who already use Claude Code, or who would rather learn to ask than learn another interface. If your team needs a screen to look at all day, keep HerdMASTER. If you need the answers more than the screens, this is cheaper, faster and yours.
-
-Installed and run for you: https://enterprisedna.co/omni/instead-of/herdmaster
+Enterprise DNA can scope a farm screen, hardware connection or official integration as part of a custom installation through Omni by Enterprise DNA. The free base is for operators comfortable asking an agent for records and reviewing changes.

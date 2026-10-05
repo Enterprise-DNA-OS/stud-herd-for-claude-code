@@ -1,0 +1,4 @@
+Visual ID,Animal Name,Sex,Date of Birth,Property,Electronic ID,Sire,Dam
+IMPORT-BULL,Example Bull,M,2020-01-01,IMPORT-AU,DEMO-IMPORT-1,,
+IMPORT-COW,"Example, Cow",F,2021-01-01,IMPORT-AU,DEMO-IMPORT-2,,
+IMPORT-CALF,Example Calf,F,2026-09-01,IMPORT-AU,,IMPORT-BULL,IMPORT-COW

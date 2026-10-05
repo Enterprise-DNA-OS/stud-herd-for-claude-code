@@ -1,0 +1,2 @@
+external_id,animal,treated,product,batch,product_expiry,dose,meat_clear,export_clear,instruction_ref,operator
+IMPORT-T1,IMPORT-BULL,2026-09-01,Fictional product,DEMO-BATCH,2027-01-01,Demo dose,2026-09-02,2026-09-10,Example instructions,Demo operator

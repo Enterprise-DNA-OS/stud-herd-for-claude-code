@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Which cows are overdue to calve, and which sire was used?",
+    "command": "node scripts/herd.mjs calving-watch"
+  },
+  {
+    "question": "Which sale lots still have treatment reviews and missing movement receipts?",
+    "command": "node scripts/herd.mjs sale-readiness"
+  },
+  {
+    "question": "Which yearlings have the lowest recorded daily weight gain?",
+    "command": "node scripts/herd.mjs growth"
+  },
+  {
+    "question": "Which mobs have stale weights mixed into their latest averages?",
+    "command": "node scripts/herd.mjs performance-review"
+  },
+  {
+    "question": "Which sires have joinings with pregnancy results still pending?",
+    "command": "node scripts/herd.mjs breeding-review"
+  },
+  {
+    "question": "Which active cattle have missing parent or society records?",
+    "command": "node scripts/herd.mjs record-gaps"
+  },
+  {
+    "question": "Which animal movements lack a receipt after the reminder date?",
+    "command": "node scripts/herd.mjs movements"
+  },
+  {
+    "question": "Which treatments lack a batch, expiry or clearance instructions?",
+    "command": "node scripts/herd.mjs compliance"
+  },
+  {
+    "question": "Which breeding values belong to different analysis runs?",
+    "command": "node scripts/herd.mjs breeding-values"
+  },
+  {
+    "question": "What notes, weights, treatments and movements sit behind one animal?",
+    "command": "node scripts/herd.mjs animal IB-C01"
+  }
+]

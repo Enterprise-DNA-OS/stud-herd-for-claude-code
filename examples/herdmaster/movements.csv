@@ -1,0 +1,2 @@
+external_id,animal,from_code,to_code,country,moved_at,direction,document_ref
+IMPORT-M1,IMPORT-BULL,DEMO-SELLER,IMPORT-AU,AU,2026-09-01T10:00:00Z,incoming,DEMO-NVD

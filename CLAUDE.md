@@ -1,43 +1,51 @@
-# Stud Herd for Claude Code: operating instructions
+# Stud Herd for Claude Code
 
-This file is the brain. Claude Code reads it at the start of every session. It says who this is for, how work gets done, and the one right way to do each recurring job.
+## Operator context
 
-## Who this is for
+Business: Your stud name. Operator: Your stock manager. Set the property codes, AU state or NZ location and breeding season before importing live data. Demo records are fictional.
 
-- **Business:** [YOUR BUSINESS]
-- **Operator:** [YOUR NAME], [your role]
-- **What matters most:** [the one or two outcomes you care about]
+## Working rules
 
-Fill this in once. A worker with context knows. A worker without it guesses.
+Read before writing. Use the one CLI in scripts/herd.mjs and answer from current records. Never invent doses, withdrawal dates, breeding values, official receipts or parentage. Names can be ambiguous; list candidates and ask for the tag. All exports and drafts stay private. Never send, publish, delete or submit to an official registry. Back up before schema changes.
 
-## How to work
+The embedded database uses one process at a time. DATA_DIR chooses the database; DATABASE_URL selects PostgreSQL. The demo always uses .data/demo. A normal CLI uses .data/db unless configured. Never seed a working database. Receipts record evidence of an official action taken elsewhere. Status changes and property changes are separate from movement evidence.
 
-1. **Take a brief, not a script.** The operator describes the outcome. You run the right command and present the answer.
-2. **Read before you write.** Before drafting anything about a record, read its full history first.
-3. **Plain language.** Short sentences. No filler. Numbers in tables.
-4. **Silent success, loud problems.** No play-by-play. Say what broke and what you did about it.
-5. **Stop at the line.** Anything that sends, deletes, or faces a customer waits for a yes in this session.
+## Recurring work
 
-## Routing table: one right way for each recurring job
-
-| When the operator asks for... | Use this |
+| Ask | Recipe |
 |---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+| add | /add |
+| animal | /animal |
+| attention | /attention |
+| breeding review | /breeding-review |
+| breeding values | /breeding-values |
+| calve | /calve |
+| calving watch | /calving-watch |
+| compliance | /compliance |
+| customise | /customise |
+| documents | /documents |
+| draft sale | /draft-sale |
+| export | /export |
+| growth | /growth |
+| herd | /herd |
+| import | /import |
+| join | /join |
+| log | /log |
+| move | /move |
+| movements | /movements |
+| new view | /new-view |
+| pedigree | /pedigree |
+| performance review | /performance-review |
+| properties | /properties |
+| record gaps | /record-gaps |
+| sale lot | /sale-lot |
+| sale readiness | /sale-readiness |
+| set | /set |
+| treat | /treat |
+| treatment holds | /treatment-holds |
+| weekly review | /weekly-review |
+| weigh | /weigh |
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
+Run `node scripts/herd.mjs help` for exact fields. Keep one numbered migration per schema change. Validate it on disposable data with npm test. docs/compliance.md owns rule scope and source links. drafts/ holds unsent work. No medical recommendations or automatic breeding decisions. EBVs are recorded values from the named analysis, never calculated here.
 
-## Hard rules
-
-- Never send email or messages from here. Draft to `drafts/`, a person sends.
-- Never delete records without an explicit yes in this session. Prefer marking closed or archived.
-- Never invent a record. If a name is ambiguous, list the candidates and ask.
-- The database is the source of truth. If the answer is not in it, say so.
-
-## Where things live
-
-- `scripts/` the CLI. `scripts/lib/db.mjs` picks `DATABASE_URL` (Postgres, Supabase) or the embedded database in `.data/`.
-- `supabase/migrations/` the schema, plain SQL. `npm run migrate` applies it.
-- `.claude/commands/` the slash commands. Add one every time the same ask comes twice.
-- `docs/` the thesis and the guide for moving off HerdMASTER.
-
-Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/herdmaster
+Built by Enterprise DNA. Managed through Omni by Enterprise DNA: https://enterprisedna.co/omni/book?offer=replace-software&utm_campaign=herdmaster
